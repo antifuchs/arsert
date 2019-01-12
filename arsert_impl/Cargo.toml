@@ -1,12 +1,12 @@
 [package]
 edition = '2018'
 name = "arsert_impl"
-version = "0.0.1" # version_replace
+version = "0.0.2-dev" # version_replace
 authors = ["Andreas Fuchs <asf@boinkor.net>"]
 license = "MIT"
 repository = "https://github.com/antifuchs/arsert"
 readme = "README.md"
-description = "Assertions that provide more sophisticated failure messages"
+description = "proc_macro_hack implementation for `arsert`"
 documentation = "https://docs.rs/arsert"
 
 [package.metadata.release]

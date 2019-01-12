@@ -1,3 +1,5 @@
-# A project
+# The proc macro driving `arsert`
 
-(I haven't written a readme yet! Sorry!)
+This crate is used to implement
+[`arsert`](https://crates.io/crate/arsert). You'll probably want to
+install that one.

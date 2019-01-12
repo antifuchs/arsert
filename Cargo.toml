@@ -31,11 +31,11 @@ pre-release-replacements = [
 
 [dependencies.arsert_failure]
 path = "./arsert_failure"
-version="0.0.1" # dep_replace
+version="0.0.2-dev" # dep_replace
 
 [dependencies.arsert_impl]
 path = "./arsert_impl"
-version="0.0.1" # dep_replace
+version="0.0.2-dev" # dep_replace
 
 [dependencies]
 proc-macro-hack = "0.5.4"
