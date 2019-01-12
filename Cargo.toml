@@ -14,6 +14,7 @@ circle-ci = { repository = "antifuchs/arsert", branch = "master" }
 maintenance = { status = "passively-maintained" }
 
 [package.metadata.release]
+publish = false
 sign-commit = false
 upload-doc = false
 pre-release-commit-message = "Release {{version}} 🎉🎉"
@@ -21,8 +22,24 @@ pro-release-commit-message = "Start next development iteration {{version}}"
 tag-message = "Release {{prefix}}{{version}}"
 dev-version-ext = "dev"
 tag-prefix = "v"
+pre-release-hook = ["cargo", "test"]
+pre-release-replacements = [
+  { file="arsert_failure/Cargo.toml", search='(?m)^.*# version_replace$', replace='version = "{{version}}" # version_replace' },
+  { file="arsert_impl/Cargo.toml", search='(?m)^.*# version_replace$', replace='version = "{{version}}" # version_replace' },
+  { file="arsert_impl/Cargo.toml", search='(?m)^.*# dep_replace$', replace='version="{{version}}" # dep_replace'},
+  { file="Cargo.toml", search='(?m)^.*# dep_replace$', replace='version="{{version}}" # dep_replace'},
+]
+
+[dependencies.arsert_failure]
+path = "./arsert_failure"
+version = "0.0.1-dev" # dep_replace
+
+[dependencies.arsert_impl]
+path = "./arsert_impl"
+version = "0.0.1-dev" # dep_replace
 
 [dependencies]
-arsert_failure = { path = "./arsert_failure" }
-arsert_impl = { path = "./arsert_impl" }
 proc-macro-hack = "0.5.4"
+
+[dev-dependencies]
+version-sync = "0.6.0"

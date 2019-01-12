@@ -1,6 +1,6 @@
 [package]
 name = "arsert_failure"
-version = "0.1.0"
+version = "0.0.1-dev" # version_replace
 authors = ["Andreas Fuchs <asf@boinkor.net>"]
 edition = "2018"
 
