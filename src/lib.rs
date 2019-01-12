@@ -12,7 +12,7 @@
 //! use arsert::arsert;
 //! let x = 1;
 //! let y = 2;
-//! arsert!(x == y); // Fails and tells you the values of `x` and `y`
+//! arsert!(x >= y); // Fails and tells you the values of `x` and `y`
 //! ```
 //!
 //! Here's a successful one:
@@ -22,6 +22,15 @@
 //! let x = 20 as i64;
 //! arsert!(x <= x.pow(3));
 //! ```
+//!
+//! ## Supported operations
+//!
+//! Right now, asert supports "simple" assertions (very much like assert
+//! does) and assertions on binary operations, like `==`, `>`, `&&` and so
+//! on.
+//!
+//! I'm working on more supported expressions (and maybe, once proc_macros
+//! as statements get stabilized, an extension mechanism).
 //!
 //! ## The Name
 //!
