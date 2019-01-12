@@ -10,7 +10,7 @@ description = "Assertions that provide more sophisticated failure messages"
 documentation = "https://docs.rs/arsert"
 
 [badges]
-travis-ci = { repository = "antifuchs/arsert", branch = "master" }
+circle-ci = { repository = "antifuchs/arsert", branch = "master" }
 maintenance = { status = "passively-maintained" }
 
 [package.metadata.release]

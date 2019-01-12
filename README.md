@@ -1,3 +1,5 @@
+[![Build Status](https://circleci.com/gh/antifuchs/arsert/tree/master.svg?style=shield)](https://circleci.com/gh/antifuchs/arsert/cargo-readme/tree/master)
+
 # arsert
 
 ## arsert - assertions that fail very sophisticatedly
@@ -10,12 +12,12 @@ diagnostic information about the parameters to the assertion.
 
 Here's a failing assertion:
 
-```rust should_panic
+```rust
 use arsert::arsert;
 let x = 1;
 let y = 2;
 arsert!(x >= y); // Fails and tells you the values of `x` and `y`
-```rust
+```
 
 Here's a successful one:
 
@@ -27,9 +29,9 @@ arsert!(x <= x.pow(3));
 
 ### Supported operations
 
-Right now, asert supports "simple" assertions (very much like assert
-does) and assertions on binary operations, like `==`, `>`, `&&` and so
-on.
+Right now, arsert supports "simple" assertions (very much like
+assert does), unary assertions (e.g. `*foo` and `!foo`), and
+assertions on binary operations, like `==`, `>`, `&&` and so on.
 
 I'm working on more supported expressions (and maybe, once proc_macros
 as statements get stabilized, an extension mechanism).

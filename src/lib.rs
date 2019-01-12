@@ -8,7 +8,7 @@
 //!
 //! Here's a failing assertion:
 //!
-//! ```rust should_panic
+//! ```rust,should_panic
 //! use arsert::arsert;
 //! let x = 1;
 //! let y = 2;
