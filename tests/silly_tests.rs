@@ -1,8 +1,8 @@
 use arsert::arsert;
-use arsert_failure::{BinaryAssertionFailure, ExpressionInfo};
+use arsert_failure::{BinaryAssertionFailure, ExpressionInfo, SimpleAssertionFailure};
 
 #[test]
-fn can_assert() {
+fn binary_ops() {
     let x = 1;
     let y = 2;
     let validate = |ei: BinaryAssertionFailure<i32, i32>| {
@@ -20,4 +20,20 @@ fn can_assert() {
         );
     };
     arsert!(#![failure_function validate] x >= y);
+}
+
+#[test]
+fn unclear_ops() {
+    let validate = |ei: SimpleAssertionFailure| {
+        assert_eq!("something", ei.expression());
+        assert_eq!(vec!["something"], ei.expression_parts());
+
+        let vals = ei.values();
+        assert_eq!(
+            Some("false".to_string()),
+            vals.get("something").map(|v| format!("{:?}", v))
+        );
+    };
+    let something = false;
+    arsert!(#![failure_function validate] something);
 }

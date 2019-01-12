@@ -3,12 +3,14 @@ use syn::parse::{Parse, ParseStream};
 use syn::{Expr, ExprPath, Result};
 
 mod binary;
+mod simple;
 pub(crate) use self::binary::*;
+pub(crate) use self::simple::*;
 
 #[derive(Debug)]
 pub(crate) enum Assertion {
     Binary(BinaryAssertion),
-    Unclear(Expr),
+    Unclear(SimpleAssertion),
 }
 
 use self::Assertion::*;
@@ -18,7 +20,7 @@ impl Parse for Assertion {
         let assertion = Expr::parse(input)?;
         Ok(match assertion {
             Expr::Binary(e) => Binary(BinaryAssertion::new(e)),
-            a => Unclear(a),
+            a => Unclear(SimpleAssertion::new(a)),
         })
     }
 }
@@ -27,7 +29,7 @@ impl Assertion {
     pub(crate) fn into_expression(self, panic_fun: ExprPath) -> TokenStream {
         TokenStream::from(match self {
             Binary(b) => b.into_expression(panic_fun),
-            Unclear(_expr) => unreachable!(),
+            Unclear(e) => e.into_expression(panic_fun),
         })
     }
 }

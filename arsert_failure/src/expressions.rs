@@ -53,16 +53,49 @@ impl<L: 'static + Debug, R: 'static + Debug> ExpressionInfo for BinaryAssertionF
 
     fn values(self) -> HashMap<String, Box<dyn Debug>> {
         let mut ret: HashMap<String, Box<dyn Debug>> = HashMap::new();
-        (&mut ret).insert(self.left_expr.clone(), Box::new(self.left_val));
-        (&mut ret).insert(self.right_expr.clone(), Box::new(self.right_val));
+        (&mut ret).insert(self.left_expr.to_string(), Box::new(self.left_val));
+        (&mut ret).insert(self.right_expr.to_string(), Box::new(self.right_val));
         ret
     }
 
     fn expression_parts(&self) -> Vec<String> {
         vec![
-            self.left_expr.clone(),
-            self.op.clone(),
-            self.right_expr.clone(),
+            self.left_expr.to_string(),
+            self.op.to_string(),
+            self.right_expr.to_string(),
         ]
+    }
+}
+
+pub struct SimpleAssertionFailure {
+    expr: String,
+    val: bool,
+}
+
+impl SimpleAssertionFailure {
+    pub fn new(expr: String, val: bool) -> Self {
+        SimpleAssertionFailure { val, expr }
+    }
+}
+
+impl Display for SimpleAssertionFailure {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), fmt::Error> {
+        write!(f, "assertion failed: {:?}", self.val)
+    }
+}
+
+impl ExpressionInfo for SimpleAssertionFailure {
+    fn expression(&self) -> String {
+        self.expr.to_string()
+    }
+
+    fn values(self) -> HashMap<String, Box<dyn Debug>> {
+        let mut ret: HashMap<String, Box<dyn Debug>> = HashMap::new();
+        (&mut ret).insert(self.expr.to_string(), Box::new(self.val));
+        ret
+    }
+
+    fn expression_parts(&self) -> Vec<String> {
+        vec![self.expr.to_string()]
     }
 }
