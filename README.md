@@ -1,4 +1,4 @@
-[![Build Status](https://circleci.com/gh/antifuchs/arsert/tree/master.svg?style=shield)](https://circleci.com/gh/antifuchs/arsert/cargo-readme/tree/master)
+[![Build Status](https://circleci.com/gh/antifuchs/arsert/tree/master.svg?style=shield)](https://circleci.com/gh/antifuchs/arsert/tree/master)
 
 # arsert
 
@@ -16,7 +16,15 @@ Here's a failing assertion:
 use arsert::arsert;
 let x = 1;
 let y = 2;
-arsert!(x >= y); // Fails and tells you the values of `x` and `y`
+arsert!(x >= y);
+```
+
+This outputs:
+
+```
+thread 'main' panicked at 'x >= y
+x = 1
+y = 2', arsert_failure/src/lib.rs:23:5
 ```
 
 Here's a successful one:
