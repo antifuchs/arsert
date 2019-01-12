@@ -1,5 +1,10 @@
 [package]
 name = "arsert_failure"
+description = "Traits used by the `arsert` crate"
+license = "MIT"
+repository = "https://github.com/antifuchs/arsert"
+documentation = "https://docs.rs/arsert"
+readme = "README.md"
 version = "0.0.1" # version_replace
 authors = ["Andreas Fuchs <asf@boinkor.net>"]
 edition = "2018"
