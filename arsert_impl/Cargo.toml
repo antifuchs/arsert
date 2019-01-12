@@ -1,6 +1,6 @@
 [package]
 edition = '2018'
-name = "arsert"
+name = "arsert_impl"
 version = "0.0.1-dev"
 authors = ["Andreas Fuchs <asf@boinkor.net>"]
 license = "MIT"
@@ -8,10 +8,6 @@ repository = "https://github.com/antifuchs/arsert"
 readme = "README.md"
 description = "Assertions that provide more sophisticated failure messages"
 documentation = "https://docs.rs/arsert"
-
-[badges]
-travis-ci = { repository = "antifuchs/arsert", branch = "master" }
-maintenance = { status = "passively-maintained" }
 
 [package.metadata.release]
 sign-commit = false
@@ -22,7 +18,12 @@ tag-message = "Release {{prefix}}{{version}}"
 dev-version-ext = "dev"
 tag-prefix = "v"
 
+[lib]
+proc-macro = true
+
 [dependencies]
-arsert_failure = { path = "./arsert_failure" }
-arsert_impl = { path = "./arsert_impl" }
+arsert_failure = {path = "../arsert_failure" }
+syn = { version = "0.15.24", features = ["printing", "parsing", "full", "visit", "extra-traits"] }
 proc-macro-hack = "0.5.4"
+proc-macro2 = "0.4.24"
+quote = "0.6.10"

@@ -1,7 +1,6 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
+use proc_macro_hack::proc_macro_hack;
+
+#[proc_macro_hack]
+pub use arsert_impl::arsert;
+
+pub use arsert_failure::{panic_on_failed_assertion, ExpressionInfo};
