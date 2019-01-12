@@ -18,8 +18,9 @@ pub trait ExpressionInfo: Display {
 }
 
 /// Panics with the given assertion information.
+#[allow(clippy::needless_pass_by_value)] // necessary so we can use the trait in tests
 pub fn panic_on_failed_assertion(expr: impl ExpressionInfo) {
-    panic!(format!("Assertion failed: {}", expr));
+    panic!(format!("{}", expr));
 }
 
 pub mod expressions;

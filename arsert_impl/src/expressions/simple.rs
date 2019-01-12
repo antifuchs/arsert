@@ -18,7 +18,8 @@ impl SimpleAssertion {
             {
                 let val = #expr;
                 if !val {
-                    #panic_fun(::arsert_failure::SimpleAssertionFailure::new(#expr_src.to_string(), val));
+                    let info = ::arsert_failure::SimpleAssertionFailure::new(#expr_src.to_string(), val);
+                    #panic_fun(info);
                 }
             }
         })
