@@ -23,7 +23,7 @@ fn binary_ops() {
         );
         ran = true;
     };
-    arsert!(#![failure_function validate] x >= y);
+    arsert!(#![failure_function(validate)] x >= y);
     assert!(ran);
 }
 
@@ -42,7 +42,7 @@ fn unary_ops() {
         );
         ran = true;
     };
-    arsert!(#![failure_function validate] *x);
+    arsert!(#![failure_function(validate)] *x);
     assert!(ran);
 }
 
@@ -61,6 +61,6 @@ fn unclear_ops() {
         ran = true;
     };
     let something = false;
-    arsert!(#![failure_function validate] something);
+    arsert!(#![failure_function(validate)] something);
     assert!(ran);
 }

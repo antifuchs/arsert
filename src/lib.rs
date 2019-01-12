@@ -25,7 +25,7 @@
 //!
 //! ## Supported operations
 //!
-//! Right now, asert supports "simple" assertions (very much like assert
+//! Right now, arsert supports "simple" assertions (very much like assert
 //! does) and assertions on binary operations, like `==`, `>`, `&&` and so
 //! on.
 //!

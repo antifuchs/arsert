@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use proc_macro2;
 use quote::{quote, ToTokens};
-use syn::{ExprPath, ExprUnary};
+use syn::{Expr, ExprUnary};
 
 #[derive(Debug)]
 pub(crate) struct UnaryAssertion(ExprUnary);
@@ -11,7 +11,7 @@ impl UnaryAssertion {
         UnaryAssertion(b)
     }
 
-    pub(super) fn into_expression(self, panic_fun: ExprPath) -> TokenStream {
+    pub(super) fn into_expression(self, panic_fun: Expr) -> TokenStream {
         let expr = self.0.expr.into_token_stream();
         let expr_src = format!("{}", expr);
         let op = self.0.op.into_token_stream();

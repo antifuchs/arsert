@@ -30,7 +30,7 @@ impl Parse for Assertion {
 }
 
 impl Assertion {
-    pub(crate) fn into_expression(self, panic_fun: ExprPath) -> TokenStream {
+    pub(crate) fn into_expression(self, panic_fun: Expr) -> TokenStream {
         TokenStream::from(match self {
             Binary(b) => b.into_expression(panic_fun),
             Unary(e) => e.into_expression(panic_fun),

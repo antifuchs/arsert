@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use proc_macro2;
 use quote::{quote, ToTokens};
-use syn::{ExprBinary, ExprPath};
+use syn::{Expr, ExprBinary};
 
 #[derive(Debug)]
 pub(crate) struct BinaryAssertion(ExprBinary);
@@ -11,7 +11,7 @@ impl BinaryAssertion {
         BinaryAssertion(b)
     }
 
-    pub(super) fn into_expression(self, panic_fun: ExprPath) -> TokenStream {
+    pub(super) fn into_expression(self, panic_fun: Expr) -> TokenStream {
         let left = self.0.left.into_token_stream();
         let left_src = format!("{}", left);
         let op = self.0.op.into_token_stream();

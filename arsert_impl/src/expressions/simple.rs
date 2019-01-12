@@ -11,7 +11,7 @@ impl SimpleAssertion {
         SimpleAssertion(e)
     }
 
-    pub(super) fn into_expression(self, panic_fun: ExprPath) -> TokenStream {
+    pub(super) fn into_expression(self, panic_fun: Expr) -> TokenStream {
         let expr = self.0.into_token_stream();
         let expr_src = format!("{}", expr);
         TokenStream::from(quote! {
