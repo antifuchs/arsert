@@ -14,7 +14,6 @@ circle-ci = { repository = "antifuchs/arsert", branch = "master" }
 maintenance = { status = "passively-maintained" }
 
 [package.metadata.release]
-publish = false
 sign-commit = false
 upload-doc = false
 pre-release-commit-message = "Release {{version}} 🎉🎉"
