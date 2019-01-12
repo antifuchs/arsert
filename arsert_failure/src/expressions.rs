@@ -99,3 +99,41 @@ impl ExpressionInfo for SimpleAssertionFailure {
         vec![self.expr.to_string()]
     }
 }
+
+pub struct UnaryAssertionFailure<V: Debug> {
+    expr: String,
+    op: String,
+    val: V,
+}
+
+impl<V: Debug> UnaryAssertionFailure<V> {
+    pub fn new(expr: String, op: String, val: V) -> Self {
+        UnaryAssertionFailure { expr, op, val }
+    }
+}
+
+impl<V: Debug> Display for UnaryAssertionFailure<V> {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), fmt::Error> {
+        write!(
+            f,
+            "{}{}\n{} = {:?}",
+            self.op, self.expr, self.expr, self.val,
+        )
+    }
+}
+
+impl<V: 'static + Debug> ExpressionInfo for UnaryAssertionFailure<V> {
+    fn expression(&self) -> String {
+        format!("{}{}", self.op, self.expr)
+    }
+
+    fn values(self) -> HashMap<String, Box<dyn Debug>> {
+        let mut ret: HashMap<String, Box<dyn Debug>> = HashMap::new();
+        (&mut ret).insert(self.expr.to_string(), Box::new(self.val));
+        ret
+    }
+
+    fn expression_parts(&self) -> Vec<String> {
+        vec![self.op.to_string(), self.expr.to_string()]
+    }
+}

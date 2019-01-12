@@ -1,5 +1,7 @@
 use arsert::arsert;
-use arsert_failure::{BinaryAssertionFailure, ExpressionInfo, SimpleAssertionFailure};
+use arsert_failure::{
+    BinaryAssertionFailure, ExpressionInfo, SimpleAssertionFailure, UnaryAssertionFailure,
+};
 
 #[test]
 fn binary_ops() {
@@ -20,6 +22,22 @@ fn binary_ops() {
         );
     };
     arsert!(#![failure_function validate] x >= y);
+}
+
+#[test]
+fn unary_ops() {
+    let x = true;
+    let validate = |ei: UnaryAssertionFailure<bool>| {
+        assert_eq!("!x", ei.expression());
+        assert_eq!(vec!["!", "x"], ei.expression_parts());
+
+        let vals = ei.values();
+        assert_eq!(
+            Some("true".to_string()),
+            vals.get("x").map(|v| format!("{:?}", v))
+        );
+    };
+    arsert!(#![failure_function validate] !x);
 }
 
 #[test]
