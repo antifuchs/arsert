@@ -1,0 +1,29 @@
+[package]
+edition = '2018'
+name = "arsert"
+version = "0.0.1-dev"
+authors = ["Andreas Fuchs <asf@boinkor.net>"]
+license = "MIT"
+repository = "https://github.com/antifuchs/arsert"
+readme = "README.md"
+description = "Assertions that provide more sophisticated failure messages"
+documentation = "https://docs.rs/arsert"
+
+[badges]
+travis-ci = { repository = "antifuchs/arsert", branch = "master" }
+maintenance = { status = "passively-maintained" }
+
+[package.metadata.release]
+sign-commit = false
+upload-doc = false
+pre-release-commit-message = "Release {{version}} 🎉🎉"
+pro-release-commit-message = "Start next development iteration {{version}}"
+tag-message = "Release {{prefix}}{{version}}"
+dev-version-ext = "dev"
+tag-prefix = "v"
+
+[package.metadata.template_ci.clippy]
+allow_failure = false
+version = "stable"
+
+[dependencies]
