@@ -5,7 +5,7 @@ license = "MIT"
 repository = "https://github.com/antifuchs/arsert"
 documentation = "https://docs.rs/arsert"
 readme = "README.md"
-version = "0.0.2-dev" # version_replace
+version = "0.0.2" # version_replace
 authors = ["Andreas Fuchs <asf@boinkor.net>"]
 edition = "2018"
 
