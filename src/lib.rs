@@ -25,9 +25,9 @@
 //!
 //! ## Supported operations
 //!
-//! Right now, arsert supports "simple" assertions (very much like assert
-//! does) and assertions on binary operations, like `==`, `>`, `&&` and so
-//! on.
+//! Right now, arsert supports "simple" assertions (very much like
+//! assert does), unary assertions (e.g. `*foo` and `!foo`), and
+//! assertions on binary operations, like `==`, `>`, `&&` and so on.
 //!
 //! I'm working on more supported expressions (and maybe, once proc_macros
 //! as statements get stabilized, an extension mechanism).
