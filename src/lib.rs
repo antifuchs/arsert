@@ -8,19 +8,19 @@
 //!
 //! Here's a failing assertion:
 //!
-//! ```rust
+//! ```rust,should_panic
 //! use arsert::arsert;
 //! let x = 1;
-//! let y = 2;
-//! arsert!(x >= y);
+//! let y: i32 = 2;
+//! arsert!(x >= y.pow(3));
 //! ```
 //!
 //! This outputs:
 //!
 //! ```text
-//! thread 'main' panicked at 'x >= y
+//! thread 'main' panicked at 'x >= y . pow ( 3 )
 //! x = 1
-//! y = 2', arsert_failure/src/lib.rs:23:5
+//! y . pow ( 3 ) = 8', arsert_failure/src/lib.rs:23:5
 //! ```
 //!
 //! Here's a successful one:
