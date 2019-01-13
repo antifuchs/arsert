@@ -55,6 +55,8 @@
 //! [assert_eq]: https://doc.rust-lang.org/stable/std/macro.assert_eq.html
 //! [assert_ne]: https://doc.rust-lang.org/stable/std/macro.assert_ne.html
 
+#![deny(warnings)]
+
 use proc_macro_hack::proc_macro_hack;
 
 #[proc_macro_hack]
