@@ -1,8 +1,13 @@
 //! # arsert - assertions that fail very sophisticatedly
 //!
-//! This crate allows you to write assertions like you would with a
-//! builtin [`assert`][assert], but when the assertion fails, it outputs
+//! This crate allows you to write assertions like you would with the
+//! builtin [`assert!`][assert], but when the assertion fails, it outputs
 //! diagnostic information about the parameters to the assertion.
+//!
+//! The output is similar to what [`assert_eq!`][assert_eq] and
+//! [`assert_ne!`][assert_ne] do, but it supports more operators out of
+//! the box, and often doesn't require the author of a test to re-word
+//! failure messages.
 //!
 //! ## Usage
 //!
@@ -45,6 +50,10 @@
 //! Sorry for the toilet humor (everybody poops, y'all). Name improvement
 //! suggestions gladly accepted, provided the resulting name is terse and
 //! meaningful.
+//!
+//! [assert]: https://doc.rust-lang.org/stable/std/macro.assert.html
+//! [assert_eq]: https://doc.rust-lang.org/stable/std/macro.assert_eq.html
+//! [assert_ne]: https://doc.rust-lang.org/stable/std/macro.assert_ne.html
 
 use proc_macro_hack::proc_macro_hack;
 
