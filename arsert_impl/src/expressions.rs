@@ -1,6 +1,6 @@
 use proc_macro::TokenStream;
 use syn::parse::{Parse, ParseStream};
-use syn::{Expr, ExprPath, Result};
+use syn::{Expr, Result};
 
 mod binary;
 mod simple;

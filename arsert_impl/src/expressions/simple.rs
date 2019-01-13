@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use proc_macro2;
 use quote::{quote, ToTokens};
-use syn::{Expr, ExprPath};
+use syn::Expr;
 
 #[derive(Debug)]
 pub(crate) struct SimpleAssertion(Expr);

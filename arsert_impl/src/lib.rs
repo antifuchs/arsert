@@ -4,7 +4,7 @@ use proc_macro::TokenStream;
 use proc_macro_hack::proc_macro_hack;
 use syn::parse::{Parse, ParseStream};
 use syn::punctuated::Punctuated;
-use syn::{self, parenthesized, parse_macro_input, Attribute, Expr, ExprPath, Result, Token};
+use syn::{self, parenthesized, parse_macro_input, Attribute, Expr, Result, Token};
 
 mod expressions;
 
