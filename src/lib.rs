@@ -59,6 +59,13 @@
 
 use proc_macro_hack::proc_macro_hack;
 
+/// Ensure an expression is `true` at runtime.
+///
+/// This macro is similar to `assert!`, but in addition to what `assert!`
+/// does, `arsert!` provides information about the values in an expression
+/// that caused the expression to be non-`true`.
+///
+/// See the [crate documentation](index.html) for usage and details.
 #[proc_macro_hack]
 pub use arsert_impl::arsert;
 
