@@ -1,5 +1,4 @@
 use proc_macro::TokenStream;
-use proc_macro2;
 use quote::{quote, ToTokens};
 use syn::Expr;
 
@@ -18,7 +17,7 @@ impl SimpleAssertion {
             {
                 let val = #expr;
                 if !val {
-                    let info = ::arsert_failure::SimpleAssertionFailure::new(#expr_src.to_string(), val);
+                    let info = ::arsert::SimpleAssertionFailure::new(#expr_src.to_string(), val);
                     #panic_fun(info);
                 }
             }

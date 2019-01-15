@@ -21,10 +21,6 @@ tag-prefix = "v"
 [lib]
 proc-macro = true
 
-[dependencies.arsert_failure]
-path = "../arsert_failure"
-version="0.0.3-dev" # dep_replace
-
 [dependencies]
 syn = { version = "0.15.24", features = ["printing", "parsing", "full", "visit", "extra-traits"] }
 proc-macro-hack = "0.5.4"

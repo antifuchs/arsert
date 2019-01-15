@@ -24,12 +24,12 @@ impl BinaryAssertion {
                 let left = #left;
                 let right = #right;
                 if !(left #op right) {
-                    let info = ::arsert_failure::BinaryAssertionFailure::new(#left_src.to_string(),
                                                                              #op_src.to_string(),
                                                                              #right_src.to_string(),
                                                                              left,
                                                                              right);
                     #panic_fun(info);
+                        let info = ::arsert::BinaryAssertionFailure::new(#left_src.to_string(),
                 }
             }
         })

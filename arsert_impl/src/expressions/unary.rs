@@ -1,5 +1,4 @@
 use proc_macro::TokenStream;
-use proc_macro2;
 use quote::{quote, ToTokens};
 use syn::{Expr, ExprUnary};
 
@@ -21,9 +20,9 @@ impl UnaryAssertion {
             {
                 let expr = #expr;
                 if !(#op expr) {
-                    let info = ::arsert_failure::UnaryAssertionFailure::new(#expr_src.to_string(),
-                                                                            #op_src.to_string(),
-                                                                            expr);
+                    let info = ::arsert::UnaryAssertionFailure::new(#expr_src.to_string(),
+                                                                    #op_src.to_string(),
+                                                                    expr);
                     #panic_fun(info);
                 }
             }
