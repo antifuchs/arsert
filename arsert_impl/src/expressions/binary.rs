@@ -1,5 +1,4 @@
 use proc_macro::TokenStream;
-use proc_macro2;
 use quote::{quote, ToTokens};
 use syn::{Expr, ExprBinary};
 
@@ -20,16 +19,16 @@ impl BinaryAssertion {
         let right_src = format!("{}", right);
 
         TokenStream::from(quote! {
-            {
-                let left = #left;
-                let right = #right;
-                if !(left #op right) {
-                                                                             #op_src.to_string(),
-                                                                             #right_src.to_string(),
-                                                                             left,
-                                                                             right);
-                    #panic_fun(info);
+            match (&#left, &#right) {
+                (left, right) => {
+                    if !(*left #op *right) {
                         let info = ::arsert::BinaryAssertionFailure::new(#left_src.to_string(),
+                                                                         #op_src.to_string(),
+                                                                         #right_src.to_string(),
+                                                                         left,
+                                                                         right);
+                        #panic_fun(info);
+                    }
                 }
             }
         })

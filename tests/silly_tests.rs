@@ -1,7 +1,32 @@
 use arsert::arsert;
+use arsert_failure::TestExpressionInfo;
 use arsert_failure::{
     BinaryAssertionFailure, ExpressionInfo, SimpleAssertionFailure, UnaryAssertionFailure,
 };
+
+#[derive(Debug)]
+struct NonCopy(bool);
+
+impl PartialEq for NonCopy {
+    fn eq(&self, other: &NonCopy) -> bool {
+        self.0 || other.0
+    }
+}
+
+#[test]
+fn binary_non_copy() {
+    let x = NonCopy(false);
+
+    let mut ran = false;
+    let mut validate = |ei: BinaryAssertionFailure<NonCopy, NonCopy>| {
+        // one of us one of us
+        let gooble_gobble = NonCopy(true);
+        assert_eq!(Ok(()), ei.values_equal((&gooble_gobble, &gooble_gobble)));
+        ran = true;
+    };
+    arsert!(#![failure_function(validate)] x == x);
+    assert!(ran);
+}
 
 #[test]
 fn binary_ops() {
@@ -12,15 +37,7 @@ fn binary_ops() {
         assert_eq!("x >= y", ei.expression());
         assert_eq!(vec!["x", ">=", "y"], ei.expression_parts());
 
-        let vals = ei.values();
-        assert_eq!(
-            Some("1".to_string()),
-            vals.get("x").map(|v| format!("{:?}", v))
-        );
-        assert_eq!(
-            Some("2".to_string()),
-            vals.get("y").map(|v| format!("{:?}", v))
-        );
+        assert_eq!(Ok(()), ei.values_equal((&1, &2)));
         ran = true;
     };
     arsert!(#![failure_function(validate)] x >= y);
@@ -35,11 +52,7 @@ fn unary_ops() {
         assert_eq!("*x", ei.expression());
         assert_eq!(vec!["*", "x"], ei.expression_parts());
 
-        let vals = ei.values();
-        assert_eq!(
-            Some("false".to_string()),
-            vals.get("x").map(|v| format!("{:?}", v))
-        );
+        assert_eq!(Ok(()), ei.values_equal(Box::new(false)));
         ran = true;
     };
     arsert!(#![failure_function(validate)] *x);
@@ -53,11 +66,7 @@ fn unclear_ops() {
         assert_eq!("something", ei.expression());
         assert_eq!(vec!["something"], ei.expression_parts());
 
-        let vals = ei.values();
-        assert_eq!(
-            Some("false".to_string()),
-            vals.get("something").map(|v| format!("{:?}", v))
-        );
+        assert_eq!(Ok(()), ei.values_equal(false));
         ran = true;
     };
     let something = false;
