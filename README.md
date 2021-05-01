@@ -1,3 +1,7 @@
+# This project is quasi-abandoned
+
+While I thought this could be a fun exercise to learn rust proc macros, the ecosystem has both moved on quickly enough (allowing tests that return `Result`) and stayed in place long enough (not stabilizing expression proc macros) that this crate is now useless (or, worse than that, actively harmful). Don't use this.
+
 [![Build Status](https://circleci.com/gh/antifuchs/arsert/tree/master.svg?style=shield)](https://circleci.com/gh/antifuchs/arsert/tree/master)
 
 # arsert
