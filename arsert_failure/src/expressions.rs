@@ -131,7 +131,7 @@ impl<V: Debug> Display for UnaryAssertionFailure<V> {
     }
 }
 
-impl<V: 'static + Debug> ExpressionInfo for UnaryAssertionFailure<V> {
+impl<'a, V: 'a + Debug> ExpressionInfo for UnaryAssertionFailure<V> {
     fn expression(&self) -> String {
         format!("{}{}", self.op, self.expr)
     }

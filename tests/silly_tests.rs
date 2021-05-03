@@ -3,28 +3,42 @@ use arsert_failure::TestExpressionInfo;
 use arsert_failure::{
     BinaryAssertionFailure, ExpressionInfo, SimpleAssertionFailure, UnaryAssertionFailure,
 };
+use std::ops::Not;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 struct NonCopy(bool);
 
-impl PartialEq for NonCopy {
-    fn eq(&self, other: &NonCopy) -> bool {
-        self.0 || other.0
+impl Not for &NonCopy {
+    type Output = bool;
+
+    fn not(self) -> bool {
+        !self.0
     }
 }
 
 #[test]
 fn binary_non_copy() {
     let x = NonCopy(false);
+    let y = NonCopy(true);
 
     let mut ran = false;
     let mut validate = |ei: BinaryAssertionFailure<NonCopy, NonCopy>| {
-        // one of us one of us
-        let gooble_gobble = NonCopy(true);
-        assert_eq!(Ok(()), ei.values_equal((&gooble_gobble, &gooble_gobble)));
+        assert_eq!(Ok(()), ei.values_equal((&x, &y)));
         ran = true;
     };
-    arsert!(#![failure_function(validate)] x == x);
+    arsert!(#![failure_function(validate)] x == y);
+    assert!(ran);
+}
+
+#[test]
+fn unary_non_copy() {
+    let x = NonCopy(true);
+    let mut ran = false;
+    let mut validate = |ei: UnaryAssertionFailure<&NonCopy>| {
+        assert_eq!(Ok(()), ei.values_equal(&x));
+        ran = true;
+    };
+    arsert!(#![failure_function(validate)] !(&x));
     assert!(ran);
 }
 
